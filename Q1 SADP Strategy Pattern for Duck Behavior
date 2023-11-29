@@ -1,0 +1,50 @@
+Write a Java Program to implement Strategy Pattern for Duck Behavior. Create instance variable that holds current state of Duck from there, we just need to handle all 
+Flying Behaviors and Quack Behavior
+
+interface Strategy
+{
+    public String duckBehavior (String b);
+}
+class FlyingBehavior implements Strategy
+{
+    public String duckBehavior (String b) 
+    {
+        return "Look Duck is "+b;
+    }
+}
+class QuackBehavior implements Strategy
+{
+    public String duckBehavior (String b) 
+    {
+        return "Real Duck says "+b;
+    }
+}
+
+class Context
+{
+    private Strategy strategy;
+    public Context (Strategy strategy)
+    { 
+        this.strategy= strategy;
+    }
+    public String executeStrategy (String b)
+    {
+        return strategy.duckBehavior(b);
+    }
+}
+class Slip10
+{
+    public static void main(String[] args)
+    {
+        Context context= new Context (new FlyingBehavior());
+        System.out.println("Who Flies "+ context.executeStrategy ("Flying"));
+        context =new Context (new QuackBehavior());
+        System.out.println("Who says Quack?"+context.executeStrategy ("Quack"));
+
+    }
+}
+-----------------------------------------------------------------------------------------------------
+Output
+ * PS I:\My Drive\NRClasses\MCS\Sem 3\SADP\SADPSlipSolutions> java Slip10 
+Who Flies Look Duck is Flying
+Who says Quack?Real Duck says Quack
