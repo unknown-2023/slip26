@@ -1,0 +1,30 @@
+create database and table in MySQL. 
+
+var mysql=require('mysql');
+var con=mysql.createConnection({
+ host:"localhost",
+ user:"root",
+ password:"root",
+ database:"mydb"
+});
+con.connect(function(err) {
+ if(err) throw err;
+ console.log("connected!");
+ //var sql="create table customers(name varchar(255),address varchar(255))";
+ var a=[["ram","pune"],["ada","mumbai"]];
+ var sql="insert into customers (name,address) values ?";
+ con.query(sql,[a],function(err,result){
+ if(err) throw err;
+ console.log("Table created");
+ });
+});
+--------------------------------------------------------------------------------------------------------------------------------------
+Execution Steps –
+Npm install mysql
+1) Import the mysql module.
+2) Create a MySQL database connection configuration.
+3) Connect to the MySQL database.
+4) Define an array a containing data to be inserted into the "customers" table.
+5) Construct an SQL query for inserting data into the "customers" table using a parameterized query with the values ? syntax.
+6) Execute the SQL query using con.query().
+7) If there are no errors, it will log "Table created" to the console.
